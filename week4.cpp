@@ -79,4 +79,127 @@ int main(){
 }
 
 
-//3
+//3.Series of Fibonacci and Prime numbers | 1, 2, 1, 3, 2, 5, 3, 7, 5, 11, 8, 13, 13, 17,
+#include<stdio.h>
+#define MAX 1000
+void fibonacci(int n)
+{
+ int i, term1 = 0, term2 = 1, nextTerm;
+ for (i = 1; i<=n; i++)
+ {
+  nextTerm = term1 + term2;
+  term1 = term2;
+  term2 = nextTerm;
+ }
+ printf("%d", term1);
+}
+
+void prime(int n)
+{
+ int i, j, flag, count =0;
+ for (i=2; i<=MAX; i++){
+  flag = 0;
+  for (j=2; j<i; j++)
+  {
+   if(i%j == 0)
+   {
+    flag = 1;
+    break;
+   }
+  }
+  if (flag == 0)
+   count++;
+  if(count == n)
+  {
+   printf("%d", i);
+   break;
+  }
+ }
+}
+int main( )
+{
+ int n;
+ scanf("%d", &n);
+ if(n%2 == 1)
+  fibonacci (n/2 + 1);
+ else
+  prime(n/2);
+ return 0;
+}
+
+
+
+//4.String reverse using recursion.
+#include<bits/stdc++.h>
+#define ll              long long int 
+#define ull             unsigned long long
+#define fastread()      (ios_base:: sync_with_stdio(false),cin.tie(NULL));
+using namespace std;
+void reverse(string &str, int l, int h)
+{
+    if (l < h)
+    {
+        swap(str[l], str[h]);
+        reverse(str, l + 1, h - 1);
+    }
+}
+ 
+int main(){
+    string str;
+    getline(cin,str);
+    reverse(str, 0, str.length() - 1);
+    cout << str;
+    return 0;
+}
+
+
+//5.Check palindrome
+#include<bits/stdc++.h>
+#define ll              long long int 
+#define ull             unsigned long long
+#define fastread()      (ios_base:: sync_with_stdio(false),cin.tie(NULL));
+using namespace std;
+//check palindrome
+bool checkPal(string line){
+    int l=0,h=line.size()-1;
+    while(l<h){
+    	if(line[l++]!=line[h--]){
+    		return false;
+    	}
+    	
+    }
+    return true;
+  }
+int main(){
+    string line;
+    string temp = "";
+    getline(cin, line);
+
+    //remove special character from the string
+    for (int i = 0; i < line.size(); ++i) {
+        if ((line[i] >= 'a' && line[i] <= 'z') || (line[i] >= 'A' && line[i] <= 'Z')) {
+            temp = temp + line[i];
+        }
+    }
+    line = temp;
+    cout<<line<<endl;
+    //lowercase to uppercase
+    for(char &ch:line){
+            if(ch>='a' && ch<='z') ch-=32;
+        }
+	/*
+	//uppercase to lowercase
+    	for(char &ch:line){
+            if(ch>='A' && ch<='Z') ch+=32;
+        }
+  	*/  
+    cout<<line<<endl;
+    //palindrome check in string
+    if(checkPal(line)) cout<<"palindrome"<<endl;
+    else cout<<"not palindrome"<<endl;
+
+}
+
+
+
+
